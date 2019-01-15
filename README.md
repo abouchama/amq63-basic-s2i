@@ -43,38 +43,38 @@ You can see here that our conf openshift-activemq.xml has been copied to the ima
 ```
 $ oc logs -f bc/amq63-basic-s2i
 Cloning "https://github.com/abouchama/amq63-basic-s2i.git" ...
-	Commit:	b4f9e885a2126a0ab91f1356fae104c4c490de6a (add configuration)
+	Commit:	073c43d61cc4025ce100e02784439ff079863b97 (Update README.md)
 	Author:	Gogs <gogs@fake.local>
-	Date:	Fri Mar 10 11:22:30 2017 +0100
+	Date:	Tue Jan 15 19:08:27 2019 +0100
+	
+Using registry.access.redhat.com/jboss-amq-6/amq63-openshift@sha256:2a1fdbe0fbc5ab57bec5ff04ba114a5cb4664f68f225a205ac6451e2ba1d1c1c as the s2i builder image
 
 Copying config files from project...
+'/tmp/src/configuration/log4j.properties' -> '/opt/amq/conf/log4j.properties'
 '/tmp/src/configuration/openshift-activemq.xml' -> '/opt/amq/conf/openshift-activemq.xml'
-
-
-Pushing image 172.30.34.183:5000/amq/amq63-basic-s2i:latest ...
-Pushed 0/7 layers, 3% complete
-Pushed 1/7 layers, 18% complete
-Pushed 2/7 layers, 35% complete
-Pushed 3/7 layers, 47% complete
-Pushed 4/7 layers, 82% complete
-Pushed 5/7 layers, 87% complete
-Pushed 6/7 layers, 94% complete
-Pushed 7/7 layers, 100% complete
+'/tmp/src/configuration/openshift-activemq.xml-default' -> '/opt/amq/conf/openshift-activemq.xml-default'
+Pushing image 172.30.1.1:5000/broker/amq63-basic-s2i:latest ...
+Pushed 0/5 layers, 1% complete
+Pushed 1/5 layers, 21% complete
+Pushed 2/5 layers, 45% complete
+Pushed 3/5 layers, 81% complete
+Pushed 4/5 layers, 95% complete
+Pushed 5/5 layers, 100% complete
 Push successful
 ```
 Let's get now, our image stream URL:
 
 ```
 $ oc get is
-NAME              DOCKER REPO                                 TAGS      UPDATED
-amq63-basic-s2i   172.30.34.183:5000/broker/amq63-basic-s2i   latest    15 minutes ago
-amq63-openshift   172.30.34.183:5000/broker/amq63-openshift   1.4       15 minutes ago
+NAME              DOCKER REPO                              TAGS      UPDATED
+amq63-basic-s2i   172.30.1.1:5000/broker/amq63-basic-s2i   latest    About a minute ago
+amq63-openshift   172.30.1.1:5000/broker/amq63-openshift   1.4       6 minutes ago
 ```
 
 Now, you have to change the image steam on the template "template-amq62-basic-s2i.json", like following:
 
 ```
-"image": "172.30.34.183:5000/broker/amq632-basic-s2i"
+"image": "172.30.1.1:5000/broker/amq63-basic-s2i"
 ```
 
 ###create the template in the namespace
