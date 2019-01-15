@@ -80,7 +80,7 @@ Now, you have to change the image steam on the template "template-amq62-basic-s2
 ###create the template in the namespace
 ```
 $ oc create -n broker -f template-amq63-basic-s2i.json 
-template "amq63-basic-s2i" created
+template.template.openshift.io/amq63-basic-s2i created
 ```
 ###create the service account "amq-service-account"
 ```
@@ -96,27 +96,41 @@ oc policy add-role-to-user view system:serviceaccount:broker:amq-service-account
 ###use the template in the namespace then to create your Broker:
 ```
 $ oc new-app --template="broker/amq63-basic-s2i"
---> Deploying template amq62-basic-s2i for "broker/amq63-basic-s2i"
+--> Deploying template "broker/amq63-basic-s2i" for "broker/amq63-basic-s2i" to project broker
 
-     amq63-basic-s2i
+     Red Hat JBoss A-MQ 6.3 (Ephemeral, no SSL)
      ---------
-     Application template for JBoss A-MQ brokers. These can be deployed as standalone or in a mesh. This template supports SSL and requires usage of OpenShift secrets.
+     Application template for JBoss A-MQ brokers. These can be deployed as standalone or in a mesh. This template doesn't feature SSL support.
+
+     A new messaging service has been created in your project. It will handle the protocol(s) "openwire". The username/password for accessing the service is usermIy/711rNayc.
 
      * With parameters:
-        * APPLICATION_NAME=broker
-        * MQ_PROTOCOL=openwire
-        * MQ_QUEUES=
-        * MQ_TOPICS=
-        * MQ_USERNAME=admin # generated
-        * MQ_PASSWORD=admin # generated
-        * AMQ_MESH_DISCOVERY_TYPE=kube
-        * AMQ_STORAGE_USAGE_LIMIT=1 gb
-        * IMAGE_STREAM_NAMESPACE=openshift
+        * Application Name=broker
+        * A-MQ Protocols=openwire
+        * Queues=
+        * Topics=
+        * A-MQ Serializable Packages=
+        * A-MQ Username=usermIy # generated
+        * A-MQ Password=711rNayc # generated
+        * A-MQ Mesh Discovery Type=dns
+        * A-MQ Store Usage Limit=100 gb
+        * Queue Memory Limit=
+        * ImageStream Namespace=openshift
 
---> Creating resources with label app=amq63-basic-s2i ...
+--> Creating resources ...
+    service "broker-amq-amqp" created
+    service "broker-amq-mqtt" created
+    service "broker-amq-stomp" created
     service "broker-amq-tcp" created
-    deploymentconfig "broker-amq-a" created
+    service "broker-amq-mesh" created
+    deploymentconfig.apps.openshift.io "broker-amq" created
 --> Success
+    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+     'oc expose svc/broker-amq-amqp' 
+     'oc expose svc/broker-amq-mqtt' 
+     'oc expose svc/broker-amq-stomp' 
+     'oc expose svc/broker-amq-tcp' 
+     'oc expose svc/broker-amq-mesh' 
     Run 'oc status' to view your app.
 ```
 ###Update of openshift-activemq.xml
