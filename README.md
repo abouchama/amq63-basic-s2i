@@ -18,33 +18,31 @@ Now let's s2i our conf to the jboss-amq image
 
 ```
 oc new-build registry.access.redhat.com/jboss-amq-6/amq63-openshift:1.4~https://github.com/abouchama/amq63-basic-s2i.git
---> Found Docker image 884d69b (6 weeks old) from registry.access.redhat.com for "registry.access.redhat.com/jboss-amq-6/amq62-openshift:1.3"
+--> Found Docker image 82969fa (11 days old) from registry.access.redhat.com for "registry.access.redhat.com/jboss-amq-6/amq63-openshift:1.4"
 
-    JBoss A-MQ 6.2 
+    JBoss A-MQ 6.3 
     -------------- 
     A reliable messaging platform that supports standard messaging paradigms for a real-time enterprise.
 
     Tags: messaging, amq, java, jboss, xpaas
 
-    * An image stream will be created as "amq62-openshift:1.3" that will track the source image
-    * A source build using source code from https://github.com/abouchama/amq62-basic-s2i.git will be created
-      * The resulting image will be pushed to image stream "amq62-basic-s2i:latest"
-      * Every time "amq62-openshift:1.3" changes a new build will be triggered
+    * An image stream tag will be created as "amq63-openshift:1.4" that will track the source image
+    * A source build using source code from https://github.com/abouchama/amq63-basic-s2i.git will be created
+      * The resulting image will be pushed to image stream tag "amq63-basic-s2i:latest"
+      * Every time "amq63-openshift:1.4" changes a new build will be triggered
 
---> Creating resources with label build=amq62-basic-s2i ...
-    imagestream "amq62-openshift" created
-    imagestream "amq62-basic-s2i" created
-    buildconfig "amq62-basic-s2i" created
+--> Creating resources with label build=amq63-basic-s2i ...
+    imagestream.image.openshift.io "amq63-openshift" created
+    imagestream.image.openshift.io "amq63-basic-s2i" created
+    buildconfig.build.openshift.io "amq63-basic-s2i" created
 --> Success
-    Build configuration "amq62-basic-s2i" created and build triggered.
-    Run 'oc logs -f bc/amq62-basic-s2i' to stream the build progress.
 ```
-To stream the build progress, run 'oc logs -f bc/amq62-basic-s2i',
+To stream the build progress, run 'oc logs -f bc/amq63-basic-s2i',
 You can see here that our conf openshift-activemq.xml has been copied to the image stream:
 
 ```
-$ oc logs -f bc/amq62-basic-s2i
-Cloning "https://github.com/abouchama/amq62-basic-s2i.git" ...
+$ oc logs -f bc/amq63-basic-s2i
+Cloning "https://github.com/abouchama/amq63-basic-s2i.git" ...
 	Commit:	b4f9e885a2126a0ab91f1356fae104c4c490de6a (add configuration)
 	Author:	Gogs <gogs@fake.local>
 	Date:	Fri Mar 10 11:22:30 2017 +0100
@@ -53,7 +51,7 @@ Copying config files from project...
 '/tmp/src/configuration/openshift-activemq.xml' -> '/opt/amq/conf/openshift-activemq.xml'
 
 
-Pushing image 172.30.34.183:5000/amq/amq62-basic-s2i:latest ...
+Pushing image 172.30.34.183:5000/amq/amq63-basic-s2i:latest ...
 Pushed 0/7 layers, 3% complete
 Pushed 1/7 layers, 18% complete
 Pushed 2/7 layers, 35% complete
@@ -69,24 +67,24 @@ Let's get now, our image stream URL:
 ```
 $ oc get is
 NAME              DOCKER REPO                                 TAGS      UPDATED
-amq62-basic-s2i   172.30.34.183:5000/broker/amq62-basic-s2i   latest    15 minutes ago
-amq62-openshift   172.30.34.183:5000/broker/amq62-openshift   1.3       15 minutes ago
+amq63-basic-s2i   172.30.34.183:5000/broker/amq63-basic-s2i   latest    15 minutes ago
+amq63-openshift   172.30.34.183:5000/broker/amq63-openshift   1.4       15 minutes ago
 ```
 
 Now, you have to change the image steam on the template "template-amq62-basic-s2i.json", like following:
 
 ```
-"image": "172.30.34.183:5000/broker/amq62-basic-s2i"
+"image": "172.30.34.183:5000/broker/amq632-basic-s2i"
 ```
 
 ###create the template in the namespace
 ```
-$ oc create -n broker -f template-amq62-basic-s2i.json 
-template "amq62-basic-s2i" created
+$ oc create -n broker -f template-amq63-basic-s2i.json 
+template "amq63-basic-s2i" created
 ```
 ###create the service account "amq-service-account"
 ```
-oc create -f https://raw.githubusercontent.com/abouchama/amq62-basic-s2i/master/amq-service-account.json
+oc create -f https://raw.githubusercontent.com/abouchama/amq63-basic-s2i/master/amq-service-account.json
 serviceaccount "amq-service-account" created
 ```
 
@@ -97,10 +95,10 @@ oc policy add-role-to-user view system:serviceaccount:broker:amq-service-account
 
 ###use the template in the namespace then to create your Broker:
 ```
-$ oc new-app --template="broker/amq62-basic-s2i"
---> Deploying template amq62-basic-s2i for "broker/amq62-basic-s2i"
+$ oc new-app --template="broker/amq63-basic-s2i"
+--> Deploying template amq62-basic-s2i for "broker/amq63-basic-s2i"
 
-     amq62-basic-s2i
+     amq63-basic-s2i
      ---------
      Application template for JBoss A-MQ brokers. These can be deployed as standalone or in a mesh. This template supports SSL and requires usage of OpenShift secrets.
 
@@ -115,7 +113,7 @@ $ oc new-app --template="broker/amq62-basic-s2i"
         * AMQ_STORAGE_USAGE_LIMIT=1 gb
         * IMAGE_STREAM_NAMESPACE=openshift
 
---> Creating resources with label app=amq62-basic-s2i ...
+--> Creating resources with label app=amq63-basic-s2i ...
     service "broker-amq-tcp" created
     deploymentconfig "broker-amq-a" created
 --> Success
@@ -132,7 +130,7 @@ $ git commit -am "changing my activemq conf"
 $ git push -u origin master
 
 $ oc start-build amq62-basic-s2i -n broker
-build "amq62-basic-s2i-2" started
+build "amq63-basic-s2i-2" started
 
 $ oc deploy broker-amq-a --latest -n broker
 Started deployment #2
