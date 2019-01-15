@@ -17,7 +17,7 @@ oc new-project broker
 Now let's s2i our conf to the jboss-amq image
 
 ```
-oc new-build registry.access.redhat.com/jboss-amq-6/amq62-openshift:1.3~https://github.com/abouchama/amq62-basic-s2i.git
+oc new-build registry.access.redhat.com/jboss-amq-6/amq63-openshift:1.4~https://github.com/abouchama/amq63-basic-s2i.git
 --> Found Docker image 884d69b (6 weeks old) from registry.access.redhat.com for "registry.access.redhat.com/jboss-amq-6/amq62-openshift:1.3"
 
     JBoss A-MQ 6.2 
