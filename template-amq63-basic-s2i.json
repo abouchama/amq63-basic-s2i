@@ -13,7 +13,7 @@
         "name": "amq63-basic-s2i"
     },
     "labels": {
-        "template": "amq63-basic",
+        "template": "amq63-basic-s2i",
         "xpaas": "1.4.17"
     },
     "message": "A new messaging service has been created in your project. It will handle the protocol(s) \"${MQ_PROTOCOL}\". The username/password for accessing the service is ${MQ_USERNAME}/${MQ_PASSWORD}.",
@@ -249,7 +249,7 @@
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "namespace": "${IMAGE_STREAM_NAMESPACE}",
-                                "name": "jboss-amq-63:1.4"
+                                "name": "amq63-basic-s2i"
                             }
                         }
                     },
