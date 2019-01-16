@@ -2,7 +2,7 @@
 
 SRCCONF=/tmp/src/configuration
 SRCLIB=/tmp/src/lib
-SRCBIN=/tmp/src
+SRCBIN=/tmp/src/bin
 SRCPATCH=/tmp/src/patch
 
 if [ -d ${SRCCONF} ]; then
@@ -15,11 +15,11 @@ fi
 #  cp -v ${SRCLIB}/* $AMQ_HOME/lib/
 #fi
 
- # if [ -d ${SRCBIN} ]; then
- # echo "Copying bin files from project..."
- # chmod +x ${SRCBIN}/*
- # cp -v ${SRCBIN}/* $AMQ_HOME/bin
-#fi
+if [ -d ${SRCBIN} ]; then
+   echo "Copying bin files from project..."
+   chmod +x ${SRCBIN}/*
+  cp -v ${SRCBIN}/* $AMQ_HOME/bin
+fi
 
 #if [ -d ${SRCPATCH} ]; then
 #   echo "############ Patch AMQ to 621164 - HF 37 ############"
