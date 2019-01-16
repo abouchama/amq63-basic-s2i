@@ -249,7 +249,7 @@
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "namespace": "${IMAGE_STREAM_NAMESPACE}",
-                                "name": "amq63-basic-s2i"
+                                "name": "amq63-basic-s2i:latest"
                             }
                         }
                     },
