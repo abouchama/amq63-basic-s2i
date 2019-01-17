@@ -95,43 +95,13 @@ oc policy add-role-to-user view system:serviceaccount:broker:amq-service-account
 
 ###use the template in the namespace then to create your Broker:
 ```
-$ oc new-app --template="broker/amq63-basic-s2i"
---> Deploying template "broker/amq63-basic-s2i" for "broker/amq63-basic-s2i" to project broker
-
-     Red Hat JBoss A-MQ 6.3 (Ephemeral, no SSL)
-     ---------
-     Application template for JBoss A-MQ brokers. These can be deployed as standalone or in a mesh. This template doesn't feature SSL support.
-
-     A new messaging service has been created in your project. It will handle the protocol(s) "openwire". The username/password for accessing the service is usermIy/711rNayc.
-
-     * With parameters:
-        * Application Name=broker
-        * A-MQ Protocols=openwire
-        * Queues=
-        * Topics=
-        * A-MQ Serializable Packages=
-        * A-MQ Username=usermIy # generated
-        * A-MQ Password=711rNayc # generated
-        * A-MQ Mesh Discovery Type=dns
-        * A-MQ Store Usage Limit=100 gb
-        * Queue Memory Limit=
-        * ImageStream Namespace=openshift
-
---> Creating resources ...
-    service "broker-amq-amqp" created
-    service "broker-amq-mqtt" created
-    service "broker-amq-stomp" created
-    service "broker-amq-tcp" created
-    service "broker-amq-mesh" created
-    deploymentconfig.apps.openshift.io "broker-amq" created
---> Success
-    Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
-     'oc expose svc/broker-amq-amqp' 
-     'oc expose svc/broker-amq-mqtt' 
-     'oc expose svc/broker-amq-stomp' 
-     'oc expose svc/broker-amq-tcp' 
-     'oc expose svc/broker-amq-mesh' 
-    Run 'oc status' to view your app.
+$ oc process amq63-basic-s2i -p APPLICATION_NAME=broker -p MQ_USERNAME=amq -p MQ_PASSWORD=topSecret -p AMQ_STORAGE_USAGE_LIMIT=1gb -p IMAGE_STREAM_NAMESPACE=broker -n broker | oc create -f -
+service "broker-amq-amqp" created
+service "broker-amq-mqtt" created
+service "broker-amq-stomp" created
+service "broker-amq-tcp" created
+service "broker-amq-mesh" created
+deploymentconfig "broker-amq" created
 ```
 ###Update of openshift-activemq.xml
 
