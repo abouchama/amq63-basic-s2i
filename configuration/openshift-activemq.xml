@@ -46,6 +46,7 @@
             <queue physicalName="USERS.TEST.QUEUE" />
             <queue physicalName="USERS.PROD.QUEUE" />
             <queue physicalName="KEVIN.YOU.ROCK" />
+            <queue physicalName="ABEL.YOU.ROCK" />
         </destinations>
 
         <destinationPolicy>
