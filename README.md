@@ -70,11 +70,19 @@ NAME              DOCKER REPO                              TAGS      UPDATED
 amq63-basic-s2i   172.30.1.1:5000/broker/amq63-basic-s2i   latest    About a minute ago
 amq63-openshift   172.30.1.1:5000/broker/amq63-openshift   1.4       6 minutes ago
 ```
+and also the image stream tag:
 
+```
+$ oc get istag
+NAME                     DOCKER REF                                                                                                                       UPDATED          IMAGENAME
+amq63-basic-s2i:latest   172.30.1.1:5000/broker/amq63-basic-s2i@sha256:e97566fedade669b45ff238e033107552ddee59c1cddff983db07172722e9713                   11 minutes ago   sha256:e97566fedade669b45ff238e033107552ddee59c1cddff983db07172722e9713
+amq63-openshift:1.4      registry.access.redhat.com/jboss-amq-6/amq63-openshift@sha256:2a1fdbe0fbc5ab57bec5ff04ba114a5cb4664f68f225a205ac6451e2ba1d1c1c   18 hours ago     sha256:2a1fdbe0fbc5ab57bec5ff04ba114a5cb4664f68f225a205ac6451e2ba1d1c1c
+```
 Now, you have to change the image steam on the template "template-amq62-basic-s2i.json", like following:
 
 ```
 "image": "172.30.1.1:5000/broker/amq63-basic-s2i"
+"name": "amq63-basic-s2i:latest"
 ```
 
 ###create the template in the namespace
