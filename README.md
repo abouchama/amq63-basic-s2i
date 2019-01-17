@@ -74,7 +74,6 @@ Now, you have to change the image steam on the template "template-amq62-basic-s2
 
 ```
 "image": "172.30.1.1:5000/broker/amq63-basic-s2i"
-"name": "amq63-basic-s2i:latest"
 ```
 Also, in triggers, change the name of the image stream tag in order to trigger a new deployment when it detect an Image Change:
 
