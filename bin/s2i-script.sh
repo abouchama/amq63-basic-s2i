@@ -1,5 +1,5 @@
 #!/bin/sh
 
 echo '************************************************************************'
-echo '* PATRICK AMQ 6.3 (1.4) BROKER configured S2I from an Openshift         *'
+echo '* CUSTOM S2I AMQ 6.3 (1.4) BROKER configured from an Openshift         *'
 echo '************************************************************************'
