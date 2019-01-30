@@ -12,7 +12,7 @@ source /opt/partition/partitionPV.sh
 source /usr/local/dynamic-resources/dynamic_resources.sh
 
 # Enable Audit Logging :: http://activemq.apache.org/audit-logging.html
-ACTIVEMQ_OPTS="${ACTIVEMQ_OPTS} -Dorg.apache.activemq.audit=true"
+#ACTIVEMQ_OPTS="${ACTIVEMQ_OPTS} -Dorg.apache.activemq.audit=true"
 
 ACTIVEMQ_OPTS="$(adjust_java_options ${ACTIVEMQ_OPTS})"
 
