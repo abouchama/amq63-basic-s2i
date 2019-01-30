@@ -11,6 +11,9 @@ source $AMQ_HOME/bin/configure.sh
 source /opt/partition/partitionPV.sh
 source /usr/local/dynamic-resources/dynamic_resources.sh
 
+# Enable Audit Logging
+ACTIVEMQ_OPTS="${ACTIVEMQ_OPTS} -Dorg.apache.activemq.audit=true"
+
 ACTIVEMQ_OPTS="$(adjust_java_options ${ACTIVEMQ_OPTS})"
 
 ACTIVEMQ_OPTS="${ACTIVEMQ_OPTS} $(/opt/jolokia/jolokia-opts)"
