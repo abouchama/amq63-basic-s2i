@@ -198,6 +198,7 @@
                                     read="amq-read"
                                     write="amq-write"
                                     admin="admins,amq-read,amq-write" />
+                 <authorizationEntry topic="ActiveMQ.Advisory.>" read="all" write="all" admin="all"/>
               </authorizationEntries>
             </authorizationMap>
           </map>
