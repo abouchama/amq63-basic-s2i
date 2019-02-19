@@ -187,16 +187,8 @@
                                     write="amq-write"
                                     admin="admins,amq-read,amq-write" />
                 <authorizationEntry topic=">"
-                                    read="admins"
-                                    write="admins"
-                                    admin="admins" />
-                <authorizationEntry topic="store.>"
-                                    read="amq-read"
-                                    write="amq-write"
-                                    admin="admins,amq-read,amq-write" />
-                <authorizationEntry topic="*.store.>"
-                                    read="amq-read"
-                                    write="amq-write"
+                                    read="admins,amq-read,amq-write"
+                                    write="admins,amq-read,amq-write"
                                     admin="admins,amq-read,amq-write" />
               </authorizationEntries>
             </authorizationMap>
