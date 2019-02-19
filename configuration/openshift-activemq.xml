@@ -53,7 +53,7 @@
             <policyMap>
                 <policyEntries>
                     <!--policyEntry queue=">" producerFlowControl="true" memoryLimit="2 mb" maxBrowsePageSize="700" useCache="false"-->
-                    <policyEntry queue=">" producerFlowControl="true" memoryLimit="1mb" useCache="false">
+                    <policyEntry queue=">" producerFlowControl="true" memoryLimit="1mb" useCache="false" cursorMemoryHighWaterMark="100">
                         <!--
                             Allow messages to be replayed back to original broker if there is demand.
                             (replayWhenNoConsumers="true").
