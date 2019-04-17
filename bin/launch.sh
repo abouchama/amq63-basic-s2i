@@ -37,6 +37,8 @@ cat <<EOF > $AMQ_HOME/bin/env
 ACTIVEMQ_OPTS="${ACTIVEMQ_OPTS} ${JAVA_OPTS_APPEND}"
 EOF
 
+echo "$(cat $AMQ_HOME/bin/env)"
+
 log_info "Running $JBOSS_IMAGE_NAME image, version $JBOSS_IMAGE_VERSION"
 
 # Parameters are
