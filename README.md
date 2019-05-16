@@ -117,6 +117,14 @@ service "broker-amq-tcp" created
 service "broker-amq-mesh" created
 deploymentconfig "broker-amq" created
 ```
+
+ Logs show:
+ 
+ ```
+ Copying Config files from S2I build
+'/opt/amq/conf/broker.xml' -> '/home/jboss/broker-s2i/etc/broker.xml'
+```
+ 
 ###Update of openshift-activemq.xml
 
 You should setup the GitHub webhook URL in order to trigger a new build after each update.
