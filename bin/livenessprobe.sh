@@ -7,7 +7,7 @@ LOG=/tmp/liveness-log
 echo " --- Liveness Probe Started --- " > "${LOG}"
 
 #while : ; do
-CONNECT_RESULT=1
+#CONNECT_RESULT=1
 
 source /opt/amq/bin/activemq producer --user amq --password topSecret --brokerUrl tcp://$HOSTNAME:61616 --destination livenessprobeq --messageCount 1 --msgTTL 60000 --persistent false
 source /opt/amq/bin/activemq consumer --user amq --password topSecret --brokerUrl tcp://$HOSTNAME:61616 --destination livenessprobeq --messageCount 1
