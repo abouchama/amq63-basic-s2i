@@ -169,7 +169,7 @@
             <!--jaasAuthenticationPlugin configuration="activemq-ldap" /><authorizationPlugin><map><cachedLDAPAuthorizationMap connectionURL="ldaps://il3-broker-ldaps-service:636" connectionUsername="cn=Manager,dc=bp,dc=com" connectionPassword="secret" queueSearchBase="ou=Queue,ou=Destination,ou=ActiveMQ,dc=activemq,dc=bp,dc=com" topicSearchBase="ou=Topic,ou=Destination,ou=ActiveMQ,dc=activemq,dc=bp,dc=com" tempSearchBase="ou=Temp,ou=Destination,ou=ActiveMQ,dc=activemq,dc=bp,dc=com" refreshInterval="300000" legacyGroupMapping="false"/></map></authorizationPlugin>
             <virtualSelectorCacheBrokerPlugin persistFile="${activemq.data}/selectorCache" persistInterval="900" /-->
 
-            <jaasAuthenticationPlugin configuration="activemq" />
+            <!--jaasAuthenticationPlugin configuration="activemq" />
             <authorizationPlugin>
           <map>
             <authorizationMap>
@@ -190,7 +190,7 @@
               </authorizationEntries>
             </authorizationMap>
           </map>
-        </authorizationPlugin>
+        </authorizationPlugin-->
         </plugins>
 
         <!--
