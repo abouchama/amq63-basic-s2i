@@ -6,26 +6,16 @@ LOG=/tmp/liveness-log
 
 echo " --- Liveness Probe Started --- " > "${LOG}"
 
-#!/bin/bash
-
-function producer() {
-/opt/amq/bin/activemq producer --user admin --password admin --brokerUrl tcp://$HOSTNAME:61616 --destination livenessprobeq --messageCount 1 --msgTTL 60000 --persistent false
-echo "producer executed" >> "${LOG}"
-}
-function consumer() {
-/opt/amq/bin/activemq consumer --user admin --password admin --brokerUrl tcp://$HOSTNAME:61616 --destination livenessprobeq --messageCount 1
-echo "consumer executed" >> "${LOG}"
-}
-
 # this subshell is a scope of try
 # try
 (
   # this flag will make to exit from current subshell on any error
   # inside it (all functions run inside will also break on any error)
   set -e
-  producer
-  consumer
-  # do more stuff here
+/opt/amq/bin/activemq producer --user admin --password admin --brokerUrl tcp://$HOSTNAME:61616 --destination livenessprobeq --messageCount 1 --msgTTL 60000 --persistent false
+echo "producer executed" >> "${LOG}"
+/opt/amq/bin/activemq consumer --user admin --password admin --brokerUrl tcp://$HOSTNAME:61616 --destination livenessprobeq --messageCount 1
+echo "consumer executed" >> "${LOG}"
 )
 # and here we catch errors
 # catch
