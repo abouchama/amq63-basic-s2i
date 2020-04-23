@@ -4,7 +4,7 @@ OUTPUT=/tmp/liveness-output
 ERROR=/tmp/liveness-error
 LOG=/tmp/liveness-log
 
-echo "--- Liveness Probe Started --- " > "${LOG}"
+echo " --- Liveness Probe Started --- " > "${LOG}"
 
 #while : ; do
 CONNECT_RESULT=1
