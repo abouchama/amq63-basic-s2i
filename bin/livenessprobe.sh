@@ -22,5 +22,6 @@ if [ "${CONNECT_RESULT}" -eq 0 ] ; then
         echo "exit0" >> "${LOG}"
         exit 0;
     else
+        echo "exit1" >> "${LOG}"
         exit 1;
 fi
